@@ -12,11 +12,23 @@ function createGrid(size) {
         container.appendChild(square);
 
 
-        square.addEventListener("mouseover", () => {
-            square.style.backgroundColor = "honeydew";
+        square.addEventListener("click", () => {
+            square.style.backgroundColor = "black";
         });
 
         container.appendChild(square);
     }
 }
-createGrid(16);
+
+const resizeBtn = document.getElementById("resize-btn");
+
+resizeBtn.addEventListener("click", () => {
+    let size = parseInt(prompt("How many squares per side? (max 100)"));
+
+    if(isNaN(size) || size <= 0) {
+        alert("Please enter a valid number.");
+        return;
+    }
+    if (size > 100) size = 100;
+    createGrid(size);
+});
